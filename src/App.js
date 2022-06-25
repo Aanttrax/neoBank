@@ -11,22 +11,32 @@ function App() {
   function expenditures(e){
     if(e.target.value < 1){
       setError(true)
+    }else{
+      setDaysExpenditures(e.target.value);
+      setError(false)
     }
-    setDaysExpenditures(e.target.value);
-    setError(false)
+    
   }
   function days(e){
     if(e.target.value < 1){
       setError(true)
+    }else{
+      setDaysTrailing(e.target.value);
+      setError(false);
     }
-    setDaysTrailing(e.target.value);
-    setError(false)
+  }
+  function verify(e){
+    if(e.target.value < 1 || e.target.value >200){
+      setError(true)
+    }else{
+      setError(false)
+    }
   }
 
   let numbers = [];
 
   for (let i = 0; i<daysExpenditures; i++){
-    numbers.push(<input id = {`days_${i}`} type='number' key={i}/>)
+    numbers.push(<input onChange={verify}id = {`days_${i}`} type='number' key={i} min ="0" max='200'/>)
   }
 
   function play(e){
@@ -43,7 +53,7 @@ function App() {
       i=parseInt(daysTrailing)+i;
       let average = 0;  
       let k =0;
-      console.log(aux,'aux')
+      
       for(let j=0;j<daysTrailing;j++){
         
         k=k+aux
@@ -52,10 +62,10 @@ function App() {
         k=k-aux;
         console.log(k,'k')
       }
-      console.log(average/daysTrailing,'prom')
+      
       if(expenditures_num[i]>= (2*average/daysTrailing)){
         notice++
-        console.log('mayorrrr',notice)
+
       }
       i=i-parseInt(daysTrailing);
       aux++;
@@ -64,19 +74,20 @@ function App() {
   }
   return (
     <div className="body">
+      <h1>Acount Activity</h1>
       <label htmlFor="expenditures">Number of Days of Transaction:</label>
-      <input onChange={expenditures} type='number' id="expenditures" min="1" max="200000"/>
+      <input onChange={expenditures} type='number' id="expenditures" min ="1" max="200000"/>
       <label htmlFor="days">Number of Trailing Days:</label>
       <input onChange={days} type='number' id='days' min='1'/>
       <form className='form' onSubmit={play}>
         <div>
           {numbers}
         </div>
-        {error?<p>Wrong number</p>:''}
+        {error?<p className="error">Wrong number</p>:''}
         <button className="btn">Play</button>
       </form>
       <div>
-      {notify?<p>number of notification {notify}</p>:''}
+      {notify?<p className="result">Number of notification: {notify}</p>:''}
       </div>
     </div>
   );

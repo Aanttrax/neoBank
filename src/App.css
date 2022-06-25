@@ -1,11 +1,13 @@
 .body {
     background-color: aliceblue;
     height: 100vh;
+    text-align: center;
 }
 .form{
     margin-top: 50px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 input{
     width: 100px;
@@ -13,6 +15,7 @@ input{
 }
 .btn {
     background-color: red;
+    width: 100%;
     font-size: larger;
     padding: 20px;
 }
@@ -22,5 +25,11 @@ input{
 
 .error{
     color: red;
-    background-color: aquamarine;
+    font-size: xx-large;
+    font-weight: 500;
+}
+.result{
+    font-size: xx-large;
+    font-weight: 600;
+    text-align: center;
 }
