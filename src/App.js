@@ -18,7 +18,7 @@ function App() {
     
   }
   function days(e){
-    if(e.target.value < 1){
+    if(e.target.value < 1 || e.target.value >=daysExpenditures){
       setError(true)
     }else{
       setDaysTrailing(e.target.value);
@@ -26,7 +26,7 @@ function App() {
     }
   }
   function verify(e){
-    if(e.target.value < 1 || e.target.value >200){
+    if(e.target.value < 0 || e.target.value >200){
       setError(true)
     }else{
       setError(false)
